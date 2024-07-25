@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>女同蒸鹅心</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500&display=swap');
+        
+        body {
+            font-family: 'Noto Sans SC', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Helvetica', 'Arial', sans-serif;
+            background-color: #F8F8F8;
+            color: #333;
+            margin: 0;
+            padding: 0;
+        }
+        .navbar {
+            background-color: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            padding: 1rem;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 1px 0 rgba(0,0,0,0.1);
+        }
+        .navbar h1 {
+            margin: 0;
+            font-size: 1.5rem;
+            color: #000;
+            font-weight: 500;
+            text-align: center;
+            letter-spacing: -0.02em;
+        }
+        .gallery {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            padding: 2rem;
+        }
+        .photo-item {
+            flex: 0 1 calc(25% - 2rem);
+            margin: 1rem;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+            transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            border-radius: 12px;
+            aspect-ratio: 1 / 1;
+        }
+        .photo-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.2);
+        }
+        .photo-item img {
+            width: 100%;
+            height: 100%;
+            display: block;
+            object-fit: cover;
+            object-position: center;
+            transition: transform 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+        }
+        .photo-item:hover img {
+            transform: scale(1.05);
+        }
+        .photo-description {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background-color: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(5px);
+            padding: 0.5rem;
+            transform: translateY(100%);
+            transition: transform 0.3s ease;
+        }
+        .photo-item:hover .photo-description {
+            transform: translateY(0);
+        }
+        .music-player {
+            position: fixed;
+            left: 20px;
+            bottom: 20px;
+            background-color: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(10px);
+            border-radius: 16px;
+            padding: 15px;
+            width: 300px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        .progress-bar {
+            width: 100%;
+            height: 4px;
+            background-color: #E0E0E0;
+            border-radius: 2px;
+            margin: 10px 0;
+            overflow: hidden;
+        }
+        .progress {
+            width: 0;
+            height: 100%;
+            background-color: #007AFF;
+            border-radius: 2px;
+            transition: width 0.1s linear;
+        }
+        .music-controls {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-top: 10px;
+        }
+        .music-controls button {
+            background-color: transparent;
+            border: none;
+            color: #007AFF;
+            font-size: 24px;
+            margin: 0 15px;
+            cursor: pointer;
+            transition: opacity 0.2s;
+        }
+        .music-controls button:hover {
+            opacity: 0.7;
+        }
+        #playPauseButton {
+            width: 40px;
+            height: 40px;
+            background-color: #007AFF;
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 20px;
+        }
+        .music-list {
+            list-style-type: none;
+            padding: 0;
+            margin-top: 15px;
+            max-height: 150px;
+            overflow-y: auto;
+        }
+        .music-list li {
+            padding: 8px 10px;
+            cursor: pointer;
+            border-radius: 8px;
+            transition: background-color 0.2s;
+        }
+        .music-list li:hover {
+            background-color: rgba(0, 0, 0, 0.05);
+        }
+        .current-song {
+            font-weight: 500;
+            color: #007AFF;
+        }
+        #currentSong {
+            font-size: 14px;
+            color: #666;
+            margin-bottom: 5px;
+        }
+        @media (max-width: 1200px) {
+            .photo-item {
+                flex: 0 1 calc(33.333% - 2rem);
+            }
+        }
+        @media (max-width: 900px) {
+            .photo-item {
+                flex: 0 1 calc(50% - 2rem);
+            }
+        }
+        @media (max-width: 600px) {
+            .photo-item {
+                flex: 0 1 calc(100% - 2rem);
+            }
+            .music-player {
+                width: calc(100% - 40px);
+                left: 20px;
+                right: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <h1>孤独摇滚</h1>
+    </nav>
+    
+    <main class="gallery">
+        <div class="photo-item">
+            <img src="photo1.jpg" alt="日常照片1">
+            <div class="photo-description">bochii</div>
+        </div>
+        <div class="photo-item">
+            <img src="photo2.jpg" alt="日常照片2">
+            <div class="photo-description">kita</div>
+        </div>
+        <div class="photo-item">
+            <img src="photo3.jpg" alt="日常照片3">
+            <div class="photo-description">ryo</div>
+        </div>
+        <div class="photo-item">
+            <img src="photo4.jpg" alt="日常照片4">
+            <div class="photo-description">nijika</div>
+        </div>
+        <!-- 更多照片... -->
+    </main>
+
+    <div class="music-player">
+        <div id="currentSong">当前播放: </div>
+        <div class="progress-bar">
+            <div class="progress" id="progress"></div>
+        </div>
+        <div class="music-controls">
+            <button id="prevButton">⏮</button>
+            <button id="playPauseButton">▶</button>
+            <button id="nextButton">⏭</button>
+        </div>
+        <ul class="music-list" id="musicList"></ul>
+    </div>
+
+    <audio id="backgroundMusic" preload="auto">
+        <source src="" type="audio/mpeg">
+        Your browser does not support the audio element.
+    </audio>
+
+    <script>
+        const playPauseButton = document.getElementById('playPauseButton');
+        const prevButton = document.getElementById('prevButton');
+        const nextButton = document.getElementById('nextButton');
+        const progress = document.getElementById('progress');
+        const currentSongDisplay = document.getElementById('currentSong');
+        const musicList = document.getElementById('musicList');
+        const backgroundMusic = document.getElementById('backgroundMusic');
+
+        const playlist = [
+            {title: "有什么不好", src: "background_music.mp3"},
+            {title: "背景音乐 2", src: "background_music2.mp3"},
+            {title: "背景音乐 3", src: "background_music3.mp3"}
+        ];
+
+        let currentTrack = 0;
+
+        function loadTrack(trackIndex) {
+            if (trackIndex >= 0 && trackIndex < playlist.length) {
+                currentTrack = trackIndex;
+                backgroundMusic.src = playlist[currentTrack].src;
+                currentSongDisplay.textContent = "当前播放: " + playlist[currentTrack].title;
+                updateMusicList();
+            }
+        }
+
+        function updateMusicList() {
+            musicList.innerHTML = '';
+            playlist.forEach((track, index) => {
+                const li = document.createElement('li');
+                li.textContent = track.title;
+                if (index === currentTrack) {
+                    li.classList.add('current-song');
+                }
+                li.addEventListener('click', () => {
+                    loadTrack(index);
+                    backgroundMusic.play();
+                    playPauseButton.textContent = '⏸';
+                });
+                musicList.appendChild(li);
+            });
+        }
+
+        playPauseButton.addEventListener('click', () => {
+            if (backgroundMusic.paused) {
+                backgroundMusic.play();
+                playPauseButton.textContent = '⏸';
+            } else {
+                backgroundMusic.pause();
+                playPauseButton.textContent = '▶';
+            }
+        });
+
+        prevButton.addEventListener('click', () => {
+            loadTrack((currentTrack - 1 + playlist.length) % playlist.length);
+            backgroundMusic.play();
+            playPauseButton.textContent = '⏸';
+        });
+
+        nextButton.addEventListener('click', () => {
+            loadTrack((currentTrack + 1) % playlist.length);
+            backgroundMusic.play();
+            playPauseButton.textContent = '⏸';
+        });
+
+        backgroundMusic.addEventListener('timeupdate', () => {
+            const percentage = (backgroundMusic.currentTime / backgroundMusic.duration) * 100;
+            progress.style.width = `${percentage}%`;
+        });
+
+        backgroundMusic.addEventListener('ended', () => {
+            loadTrack((currentTrack + 1) % playlist.length);
+            backgroundMusic.play();
+        });
+
+        // 初始化
+        loadTrack(0);
+        updateMusicList();
+    </script>
+</body>
+</html>
