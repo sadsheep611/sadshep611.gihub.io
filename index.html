@@ -1,305 +1,487 @@
 <!DOCTYPE html>
 <html lang="zh">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>女同蒸鹅心</title>
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500&display=swap');
-        
-        body {
-            font-family: 'Noto Sans SC', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Helvetica', 'Arial', sans-serif;
-            background-color: #F8F8F8;
-            color: #333;
-            margin: 0;
-            padding: 0;
-        }
-        .navbar {
-            background-color: rgba(255, 255, 255, 0.8);
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
-            padding: 1rem;
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-            box-shadow: 0 1px 0 rgba(0,0,0,0.1);
-        }
-        .navbar h1 {
-            margin: 0;
-            font-size: 1.5rem;
-            color: #000;
-            font-weight: 500;
-            text-align: center;
-            letter-spacing: -0.02em;
-        }
-        .gallery {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            padding: 2rem;
-        }
-        .photo-item {
-            flex: 0 1 calc(25% - 2rem);
-            margin: 1rem;
-            position: relative;
-            overflow: hidden;
-            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
-            transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            border-radius: 12px;
-            aspect-ratio: 1 / 1;
-        }
-        .photo-item:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 15px 30px rgba(0,0,0,0.2);
-        }
-        .photo-item img {
-            width: 100%;
-            height: 100%;
-            display: block;
-            object-fit: cover;
-            object-position: center;
-            transition: transform 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
-        }
-        .photo-item:hover img {
-            transform: scale(1.05);
-        }
-        .photo-description {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            background-color: rgba(255, 255, 255, 0.7);
-            backdrop-filter: blur(5px);
-            padding: 0.5rem;
-            transform: translateY(100%);
-            transition: transform 0.3s ease;
-        }
-        .photo-item:hover .photo-description {
-            transform: translateY(0);
-        }
-        .music-player {
-            position: fixed;
-            left: 20px;
-            bottom: 20px;
-            background-color: rgba(255, 255, 255, 0.7);
-            backdrop-filter: blur(10px);
-            border-radius: 16px;
-            padding: 15px;
-            width: 300px;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-        }
-        .progress-bar {
-            width: 100%;
-            height: 4px;
-            background-color: #E0E0E0;
-            border-radius: 2px;
-            margin: 10px 0;
-            overflow: hidden;
-        }
-        .progress {
-            width: 0;
-            height: 100%;
-            background-color: #007AFF;
-            border-radius: 2px;
-            transition: width 0.1s linear;
-        }
-        .music-controls {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            margin-top: 10px;
-        }
-        .music-controls button {
-            background-color: transparent;
-            border: none;
-            color: #007AFF;
-            font-size: 24px;
-            margin: 0 15px;
-            cursor: pointer;
-            transition: opacity 0.2s;
-        }
-        .music-controls button:hover {
-            opacity: 0.7;
-        }
-        #playPauseButton {
-            width: 40px;
-            height: 40px;
-            background-color: #007AFF;
-            color: white;
-            border-radius: 50%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            font-size: 20px;
-        }
-        .music-list {
-            list-style-type: none;
-            padding: 0;
-            margin-top: 15px;
-            max-height: 150px;
-            overflow-y: auto;
-        }
-        .music-list li {
-            padding: 8px 10px;
-            cursor: pointer;
-            border-radius: 8px;
-            transition: background-color 0.2s;
-        }
-        .music-list li:hover {
-            background-color: rgba(0, 0, 0, 0.05);
-        }
-        .current-song {
-            font-weight: 500;
-            color: #007AFF;
-        }
-        #currentSong {
-            font-size: 14px;
-            color: #666;
-            margin-bottom: 5px;
-        }
-        @media (max-width: 1200px) {
-            .photo-item {
-                flex: 0 1 calc(33.333% - 2rem);
-            }
-        }
-        @media (max-width: 900px) {
-            .photo-item {
-                flex: 0 1 calc(50% - 2rem);
-            }
-        }
-        @media (max-width: 600px) {
-            .photo-item {
-                flex: 0 1 calc(100% - 2rem);
-            }
-            .music-player {
-                width: calc(100% - 40px);
-                left: 20px;
-                right: 20px;
-            }
-        }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>孤独摇滚</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500&display=swap');
+
+body {
+    font-family: 'Noto Sans SC', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Helvetica', 'Arial', sans-serif;
+    background-color: #F8F8F8;
+    color: #333;
+    margin: 0;
+    padding: 0;
+    transition: background-color 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.navbar {
+    background-color: rgba(255, 255, 255, 0.8);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    padding: 1rem;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    box-shadow: 0 1px 0 rgba(0,0,0,0.1);
+}
+.navbar h1 {
+    margin: 0;
+    font-size: 1.5rem;
+    color: #000;
+    font-weight: 500;
+    text-align: center;
+    letter-spacing: -0.02em;
+}
+.gallery {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    padding: 2rem;
+}
+.photo-item {
+    flex: 0 1 calc(25% - 2rem);
+    margin: 1rem;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+    transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    border-radius: 12px;
+    aspect-ratio: 1 / 1;
+}
+.photo-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 30px rgba(0,0,0,0.2);
+}
+.photo-item img {
+    width: 100%;
+    height: 100%;
+    display: block;
+    object-fit: cover;
+    object-position: center;
+    transition: transform 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+.photo-item:hover img {
+    transform: scale(1.05);
+}
+.photo-description {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: rgba(255, 255, 255, 0.7);
+    backdrop-filter: blur(5px);
+    padding: 0.5rem;
+    transform: translateY(100%);
+    transition: transform 0.3s ease;
+}
+.photo-item:hover .photo-description {
+    transform: translateY(0);
+}
+.music-player {
+    position: fixed;
+    left: 20px;
+    bottom: 20px;
+    background-color: rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    transition: all 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    overflow: hidden;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    z-index: 1000;
+}
+.music-player.expanded {
+    width: 300px;
+    height: auto;
+    border-radius: 16px;
+    padding: 15px;
+}
+.music-player-content {
+    display: none;
+    opacity: 0;
+    width: 100%;
+    transition: opacity 0.3s ease;
+}
+.music-player.expanded .music-player-content {
+    display: block;
+    opacity: 1;
+}
+.music-player-toggle {
+    font-size: 24px;
+    color: rgba(0, 122, 255, 0.7);
+    transition: transform 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+.music-player.expanded .music-player-toggle {
+    transform: rotate(90deg) scale(0);
+    display: none;
+}
+.progress-bar {
+    width: 100%;
+    height: 4px;
+    background-color: rgba(224, 224, 224, 0.5);
+    border-radius: 2px;
+    margin: 10px 0;
+    overflow: hidden;
+}
+.progress {
+    width: 0;
+    height: 100%;
+    background-color: rgba(0, 122, 255, 0.7);
+    border-radius: 2px;
+    transition: width 0.1s linear;
+}
+.music-controls {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 15px;
+}
+.music-controls button {
+    background-color: transparent;
+    border: none;
+    color: rgba(0, 122, 255, 0.7);
+    font-size: 24px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    width: 44px;
+    height: 44px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+}
+.music-controls button:hover {
+    background-color: rgba(0, 122, 255, 0.1);
+}
+.music-controls button:active {
+    transform: scale(0.95);
+}
+#playPauseButton {
+    background-color: rgba(0, 122, 255, 0.1);
+    color: rgba(0, 122, 255, 1);
+    font-size: 28px;
+}
+#prevButton, #nextButton {
+    font-size: 20px;
+}
+.music-list {
+    list-style-type: none;
+    padding: 0;
+    margin-top: 15px;
+    max-height: 150px;
+    overflow-y: auto;
+}
+.music-list li {
+    padding: 8px 10px;
+    cursor: pointer;
+    border-radius: 8px;
+    transition: background-color 0.2s;
+}
+.music-list li:hover {
+    background-color: rgba(0, 0, 0, 0.05);
+}
+.current-song {
+    font-weight: 500;
+    color: rgba(0, 122, 255, 0.7);
+}
+#currentSong {
+    font-size: 14px;
+    color: rgba(102, 102, 102, 0.8);
+    margin-bottom: 5px;
+}
+.blur-background {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-position: center;
+    filter: blur(30px);
+    opacity: 0;
+    transition: opacity 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    z-index: -1;
+}
+@media (max-width: 1200px) {
+    .photo-item {
+        flex: 0 1 calc(33.333% - 2rem);
+    }
+}
+@media (max-width: 900px) {
+    .photo-item {
+        flex: 0 1 calc(50% - 2rem);
+    }
+}
+@media (max-width: 600px) {
+    .photo-item {
+        flex: 0 1 calc(100% - 2rem);
+    }
+    .music-player.expanded {
+        width: calc(100% - 40px);
+        left: 20px;
+        right: 20px;
+    }
+}
+</style>
 </head>
 <body>
-    <nav class="navbar">
-        <h1>孤独摇滚</h1>
-    </nav>
-    
-    <main class="gallery">
-        <div class="photo-item">
-            <img src="photo1.jpg" alt="日常照片1">
-            <div class="photo-description">bochii</div>
-        </div>
-        <div class="photo-item">
-            <img src="photo2.jpg" alt="日常照片2">
-            <div class="photo-description">kita</div>
-        </div>
-        <div class="photo-item">
-            <img src="photo3.jpg" alt="日常照片3">
-            <div class="photo-description">ryo</div>
-        </div>
-        <div class="photo-item">
-            <img src="photo4.jpg" alt="日常照片4">
-            <div class="photo-description">nijika</div>
-        </div>
-        <!-- 更多照片... -->
-    </main>
+<div class="blur-background"></div>
+<nav class="navbar">
+    <h1>ぼっち・ざ・ろっく！</h1>
+</nav>
 
-    <div class="music-player">
+<main class="gallery">
+    <div class="photo-item">
+        <img src="photo1.jpg" alt="日常照片1">
+        <div class="photo-description">bochii</div>
+    </div>
+    <div class="photo-item">
+        <img src="photo2.jpg" alt="日常照片2">
+        <div class="photo-description">kita</div>
+    </div>
+    <div class="photo-item">
+        <img src="photo3.jpg" alt="日常照片3">
+        <div class="photo-description">ryo</div>
+    </div>
+    <div class="photo-item">
+        <img src="photo4.jpg" alt="日常照片4">
+        <div class="photo-description">nijika</div>
+    </div>
+</main>
+
+<div class="music-player" id="musicPlayer">
+    <div class="music-player-toggle">♫</div>
+    <div class="music-player-content">
         <div id="currentSong">当前播放: </div>
         <div class="progress-bar">
             <div class="progress" id="progress"></div>
         </div>
         <div class="music-controls">
-            <button id="prevButton">⏮</button>
+            <button id="prevButton">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M19 12L5 12M12 19L5 12L12 5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+            </button>
             <button id="playPauseButton">▶</button>
-            <button id="nextButton">⏭</button>
+            <button id="nextButton">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M5 12L19 12M12 5L19 12L12 19" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+            </button>
         </div>
         <ul class="music-list" id="musicList"></ul>
     </div>
+</div>
 
-    <audio id="backgroundMusic" preload="auto">
-        <source src="" type="audio/mpeg">
-        Your browser does not support the audio element.
-    </audio>
-
-    <script>
-        const playPauseButton = document.getElementById('playPauseButton');
-        const prevButton = document.getElementById('prevButton');
-        const nextButton = document.getElementById('nextButton');
-        const progress = document.getElementById('progress');
-        const currentSongDisplay = document.getElementById('currentSong');
-        const musicList = document.getElementById('musicList');
-        const backgroundMusic = document.getElementById('backgroundMusic');
-
-        const playlist = [
-            {title: "有什么不好", src: "background_music.mp3"},
-            {title: "背景音乐 2", src: "background_music2.mp3"},
-            {title: "背景音乐 3", src: "background_music3.mp3"}
-        ];
-
-        let currentTrack = 0;
-
-        function loadTrack(trackIndex) {
-            if (trackIndex >= 0 && trackIndex < playlist.length) {
-                currentTrack = trackIndex;
-                backgroundMusic.src = playlist[currentTrack].src;
-                currentSongDisplay.textContent = "当前播放: " + playlist[currentTrack].title;
-                updateMusicList();
+<audio id="backgroundMusic" preload="auto">
+    <source src="" type="audio/mpeg">
+    Your browser does not support the audio element.
+</audio>
+<script>
+    const playPauseButton = document.getElementById('playPauseButton');
+    const prevButton = document.getElementById('prevButton');
+    const nextButton = document.getElementById('nextButton');
+    const progress = document.getElementById('progress');
+    const currentSongDisplay = document.getElementById('currentSong');
+    const musicList = document.getElementById('musicList');
+    const backgroundMusic = document.getElementById('backgroundMusic');
+    const musicPlayer = document.getElementById('musicPlayer');
+    const musicPlayerToggle = document.querySelector('.music-player-toggle');
+    const musicPlayerContent = document.querySelector('.music-player-content');
+    const blurBackground = document.querySelector('.blur-background');
+    const photoItems = document.querySelectorAll('.photo-item');
+    
+    const playlist = [
+        {title: "小さな海 - 結束バンド.flac", src: "小さな海 - 結束バンド.flac"},
+        {title: "ラブソングが歌えない - 結束バンド.flac", src: "ラブソングが歌えない - 結束バンド.flac"},
+        {title: "なにが悪い - 結束バンド.flac", src: "なにが悪い - 結束バンド.flac"},
+        {title: "ギターと孤独と蒼い惑星 - 結束バンド.flac", src: "ギターと孤独と蒼い惑星 - 結束バンド.flac"},
+        {title: "カラカラ - 結束バンド.flac", src: "カラカラ - 結束バンド.flac"},
+        {title: "あのバンド - 結束バンド.flac", src: "あのバンド - 結束バンド.flac"},
+    
+    ];
+    
+    let currentTrack = 0;
+    
+    function loadTrack(trackIndex) {
+        if (trackIndex >= 0 && trackIndex < playlist.length) {
+            currentTrack = trackIndex;
+            backgroundMusic.src = playlist[currentTrack].src;
+            currentSongDisplay.textContent = "当前播放: " + playlist[currentTrack].title;
+            updateMusicList();
+            updatePlayPauseButton();
+        }
+    }
+    
+    function updateMusicList() {
+        musicList.innerHTML = '';
+        playlist.forEach((track, index) => {
+            const li = document.createElement('li');
+            li.textContent = track.title;
+            if (index === currentTrack) {
+                li.classList.add('current-song');
             }
-        }
-
-        function updateMusicList() {
-            musicList.innerHTML = '';
-            playlist.forEach((track, index) => {
-                const li = document.createElement('li');
-                li.textContent = track.title;
-                if (index === currentTrack) {
-                    li.classList.add('current-song');
-                }
-                li.addEventListener('click', () => {
-                    loadTrack(index);
-                    backgroundMusic.play();
-                    playPauseButton.textContent = '⏸';
-                });
-                musicList.appendChild(li);
-            });
-        }
-
-        playPauseButton.addEventListener('click', () => {
-            if (backgroundMusic.paused) {
+            li.addEventListener('click', () => {
+                loadTrack(index);
                 backgroundMusic.play();
-                playPauseButton.textContent = '⏸';
-            } else {
-                backgroundMusic.pause();
-                playPauseButton.textContent = '▶';
+                updatePlayPauseButton();
+            });
+            musicList.appendChild(li);
+        });
+    }
+    
+    function updatePlayPauseButton() {
+        playPauseButton.innerHTML = backgroundMusic.paused ? 
+            '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M8 5v14l11-7z" fill="currentColor"/></svg>' : 
+            '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M6 4h4v16H6V4zm8 0h4v16h-4V4z" fill="currentColor"/></svg>';
+    }
+    
+    playPauseButton.addEventListener('click', (e) => {
+        e.stopPropagation();
+        if (backgroundMusic.paused) {
+            backgroundMusic.play();
+        } else {
+            backgroundMusic.pause();
+        }
+        updatePlayPauseButton();
+    });
+    
+    prevButton.innerHTML = '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M6 6h2v12H6V6zm3.5 6l8.5 6V6l-8.5 6z" fill="currentColor"/></svg>';
+    nextButton.innerHTML = '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M16 6h2v12h-2V6zm-3.5 6l-8.5 6V6l8.5 6z" fill="currentColor"/></svg>';
+    
+    prevButton.addEventListener('click', (e) => {
+        e.stopPropagation();
+        loadTrack((currentTrack - 1 + playlist.length) % playlist.length);
+        backgroundMusic.play();
+        updatePlayPauseButton();
+    });
+    
+    nextButton.addEventListener('click', (e) => {
+        e.stopPropagation();
+        loadTrack((currentTrack + 1) % playlist.length);
+        backgroundMusic.play();
+        updatePlayPauseButton();
+    });
+    
+    backgroundMusic.addEventListener('timeupdate', () => {
+        const percentage = (backgroundMusic.currentTime / backgroundMusic.duration) * 100;
+        progress.style.width = `${percentage}%`;
+    });
+    
+    backgroundMusic.addEventListener('ended', () => {
+        loadTrack((currentTrack + 1) % playlist.length);
+        backgroundMusic.play();
+    });
+    
+    function toggleMusicPlayer() {
+        musicPlayer.classList.toggle('expanded');
+        if (musicPlayer.classList.contains('expanded')) {
+            musicPlayerToggle.style.display = 'none';
+            musicPlayerContent.style.display = 'block';
+            setTimeout(() => {
+                musicPlayerContent.style.opacity = '1';
+            }, 50);
+        } else {
+            musicPlayerContent.style.opacity = '0';
+            setTimeout(() => {
+                musicPlayerToggle.style.display = 'block';
+                musicPlayerContent.style.display = 'none';
+            }, 300);
+        }
+    }
+    
+    musicPlayer.addEventListener('click', toggleMusicPlayer);
+    
+    musicPlayerContent.addEventListener('click', (e) => {
+        e.stopPropagation();
+    });
+    
+    photoItems.forEach(item => {
+        item.addEventListener('click', () => {
+            const img = item.querySelector('img');
+            const imgSrc = img.src;
+            
+            console.log('Image clicked:', imgSrc);
+
+            blurBackground.style.backgroundImage = `url(${imgSrc})`;
+            blurBackground.style.opacity = '0';
+            blurBackground.style.display = 'block';
+            
+            // 更Q弹的非线性动画
+            const animation = blurBackground.animate([
+                { clipPath: 'circle(0% at center)', opacity: 0, transform: 'scale(0.8)' },
+                { clipPath: 'circle(100% at center)', opacity: 1, transform: 'scale(1.05)' },
+                { clipPath: 'circle(100% at center)', opacity: 1, transform: 'scale(1)' }
+            ], {
+                duration: 1200,
+                easing: 'cubic-bezier(0.34, 1.56, 0.64, 1)',
+                fill: 'forwards'
+            });
+
+            animation.onfinish = () => {
+                console.log('Animation finished');
+                blurBackground.style.clipPath = 'circle(100% at center)';
+                blurBackground.style.opacity = '1';
+                blurBackground.style.transform = 'scale(1)';
+            };
+
+            // 使用平滑过渡的主色调
+            getAverageColor(img).then(color => {
+                console.log('Average color:', color);
+                const rgbaBackground = `rgba(${color.join(',')}, 0.2)`;
+                const rgbaBlur = `rgba(${color.join(',')}, 0.7)`;
+                
+                document.body.style.backgroundColor = rgbaBackground;
+                blurBackground.style.backgroundColor = rgbaBlur;
+                blurBackground.style.backdropFilter = 'blur(30px)';
+                blurBackground.style.webkitBackdropFilter = 'blur(30px)';
+            }).catch(error => {
+                console.error('Error getting average color:', error);
+            });
+        });
+    });
+    
+    // 获取图片的平均颜色
+    function getAverageColor(img) {
+        return new Promise((resolve, reject) => {
+            const canvas = document.createElement('canvas');
+            const ctx = canvas.getContext('2d');
+            canvas.width = img.naturalWidth;
+            canvas.height = img.naturalHeight;
+            
+            try {
+                ctx.drawImage(img, 0, 0, img.naturalWidth, img.naturalHeight);
+                const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
+                const data = imageData.data;
+                
+                let r = 0, g = 0, b = 0;
+
+                for (let i = 0; i < data.length; i += 4) {
+                    r += data[i];
+                    g += data[i + 1];
+                    b += data[i + 2];
+                }
+
+                r = Math.floor(r / (data.length / 4));
+                g = Math.floor(g / (data.length / 4));
+                b = Math.floor(b / (data.length / 4));
+
+                resolve([r, g, b]);
+            } catch (error) {
+                reject(error);
             }
         });
-
-        prevButton.addEventListener('click', () => {
-            loadTrack((currentTrack - 1 + playlist.length) % playlist.length);
-            backgroundMusic.play();
-            playPauseButton.textContent = '⏸';
-        });
-
-        nextButton.addEventListener('click', () => {
-            loadTrack((currentTrack + 1) % playlist.length);
-            backgroundMusic.play();
-            playPauseButton.textContent = '⏸';
-        });
-
-        backgroundMusic.addEventListener('timeupdate', () => {
-            const percentage = (backgroundMusic.currentTime / backgroundMusic.duration) * 100;
-            progress.style.width = `${percentage}%`;
-        });
-
-        backgroundMusic.addEventListener('ended', () => {
-            loadTrack((currentTrack + 1) % playlist.length);
-            backgroundMusic.play();
-        });
-
-        // 初始化
-        loadTrack(0);
-        updateMusicList();
-    </script>
+    }
+    
+    // 初始化加载第一首歌曲
+    loadTrack(0);
+</script>
 </body>
-</html>
+</html>    
